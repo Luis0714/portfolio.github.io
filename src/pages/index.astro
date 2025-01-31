@@ -13,21 +13,19 @@ import Projects from "../components/Projects.astro";
 import Contact from "../components/Contact.astro";
 ---
 
-<Layout 
+<Layout
   title="Portfolio de Luis Andres  - Desarrollador y Programador Web con más de 2 años de experiencia"
   description="Contrata a Luis Andres, Desarrollador y Programador Web con más de 2 años de experiencia en Angular y .NET"
 >
   <main class="px-4">
     <SectionContainer id="home" class="py-32 pb-26">
-      <div
-      class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
-    >
-    </div>
       <img
-        class="rounded-full w-20 h-20 mb-4"
-         src="images/luisandres.jpg"
+        class="rounded-full w-20 h-20 mb-4 object-cover"
+        src="images/luisandres.jpg"
       />
-      <h1 class="text-white text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
+      <h1
+        class="text-white text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10 items-start"
+      >
         Hey, soy Luis Andres
         <a
           href="https://www.linkedin.com/in/martinezestremor/"
@@ -38,20 +36,25 @@ import Contact from "../components/Contact.astro";
           <Badge>Disponible para trabajar</Badge>
         </a>
       </h1>
-      <h2 class=" text-xl lg:text-2xl opacity-80 text-pretty max-w-[700px]">
+      <h2 class="text-xl lg:text-2xl opacity-80 text-pretty max-w-[700px]">
         <span class="text-purple-400"
           >+2 años de experiencia como Desarrollador.</span
         >
         <span>De Libertad - Sucre - Colombia</span>, actualmente viviendo en
         Manizales, Colombia. Especializado en <span class="text-yellow-200"
-          >crear aplicaciones Web con tecnologías como Angular y
-          .NET</span
+          >crear aplicaciones Web con tecnologías como Angular y .NET</span
         >, construyendo soluciones robustas y escalables.
       </h2>
       <nav class="flex gap-4 mt-4 flex-wrap">
-        <SocialBadge href="https://www.linkedin.com/in/martinezestremor/"> <LinkedInIcon class="size-4 md:size-6" /> LinkedIn </SocialBadge>
-        <SocialBadge href="https://github.com/Luis0714" > <GitHubIcon class="size-4 md:size-6" /> GitHub </SocialBadge>
-        <SocialBadge href="mailto:luian.me0714@gmail.com"> <SendMailICon class="size-4 md:size-6" /> luian.me0714@gmail.com </SocialBadge>
+        <SocialBadge href="https://www.linkedin.com/in/martinezestremor/">
+          <LinkedInIcon class="size-4 md:size-6" /> LinkedIn
+        </SocialBadge>
+        <SocialBadge href="https://github.com/Luis0714">
+          <GitHubIcon class="size-4 md:size-6" /> GitHub
+        </SocialBadge>
+        <SocialBadge href="mailto:luian.me0714@gmail.com">
+          <SendMailICon class="size-4 md:size-6" /> luian.me0714@gmail.com
+        </SocialBadge>
       </nav>
     </SectionContainer>
     <SectionContainer id="experiencie">

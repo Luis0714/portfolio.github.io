@@ -37,7 +37,7 @@ const { title, description, image, tags, link, github } = Astro.props as Props;
     </nav>
 
     <!-- Este nav se coloca con mt-auto para que siempre esté en la parte inferior -->
-    <nav class="mt-auto flex gap-2 lg:flex-col lg:gap-4">
+    <nav class="mt-auto flex gap-2 justify-between lg:flex-col lg:gap-4">
       <SocialBadge href={link}>
         Ver Proyecto <EthernetIcon class="size-4" />
       </SocialBadge>
