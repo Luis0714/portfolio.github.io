@@ -1,32 +1,165 @@
-<section class="bg-gray-800 dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col h-full mt-6 py-12 px-6">
-    <div class="max-w-md mx-auto">
-      <h2 class="text-3xl font-bold mb-4 text-white">
-        Hablemos <span class="text-yellow-200">ahora</span>
-      </h2>
-      <p class="mb-8 text-gray-400  text-pretty">
-        Para solicitar una cotización o si deseas reunirte para un café, contáctame directamente o completa el formulario y te responderé pronto.
-      </p>
-  
-      <form id="contactForm" class="space-y-4">
-        <div>
-          <label for="name" class="block mb-2">Tu Nombre</label>
-          <input type="text" id="name" name="name" required class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-200 border-none focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        </div>
-  
-        <div>
-          <label for="email" class="block mb-2">Tu Correo Electrónico</label>
-          <input type="email" id="email" name="email" required class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-200 border-none focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        </div>
-  
-        <div>
-          <label for="message" class="block mb-2">Tu Mensaje</label>
-          <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-200 border-none focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
-        </div>
-  
-        <button type="submit" class="w-full py-3 rounded-lg bg-yellow-200 text-gray-900 font-bold hover:bg-yellow-500 transition">
-          ENVIAR MENSAJE
-        </button>
-      </form>
-    </div>
-  </section>
-  
+
+<section
+  class="bg-gray-800 dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col h-full mt-6 py-12 px-6"
+>
+  <div class="max-w-md mx-auto">
+    <h2 class="text-3xl font-bold mb-4 text-white">
+      Hablemos <span class="text-yellow-200">ahora</span>
+    </h2>
+    <p class="mb-8 text-gray-400 text-pretty">
+      Para solicitar una cotización o si deseas reunirte para un café,
+      contáctame directamente o completa el formulario y te responderé pronto.
+    </p>
+
+    <form id="contactForm" class="space-y-4">
+      <div>
+        <label for="name" class="block mb-2">Tu Nombre</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-200 border-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block mb-2">Tu Correo Electrónico</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-200 border-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block mb-2">Tu Mensaje</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+          class="w-full px-3 py-2 rounded-lg bg-gray-700 text-gray-200 border-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        ></textarea>
+      </div>
+
+      <button
+        id="button"
+        type="submit"
+        class="w-full py-3 rounded-lg bg-yellow-200 text-gray-900 font-bold hover:bg-yellow-500 transition"
+      >
+        ENVIAR MENSAJE
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Script TypeScript que se ejecuta en el cliente -->
+<script>
+  import { Resend } from "resend";
+  const $form = document.getElementById("contactForm");
+  function getInformation() {
+    const $name = document.getElementById("name") as HTMLInputElement;
+    const $email = document.getElementById("email") as HTMLInputElement;
+    const $message = document.getElementById("message") as HTMLInputElement;
+
+    return {
+      name: $name.value,
+      email: $email.value,
+      message: $message.value,
+    };
+  }
+
+  const getTemplate = (information: any): string => {
+    return `
+          <!DOCTYPE html>
+          <html lang="es">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>Nuevo mensaje de contacto</title>
+              <style>
+                body {
+                  font-family: 'Helvetica Neue', Arial, sans-serif;
+                  background-color: #f4f4f4;
+                  margin: 0;
+                  padding: 20px;
+                  color: #333;
+                }
+                .container {
+                  max-width: 600px;
+                  margin: 0 auto;
+                  background: #ffffff;
+                  padding: 30px;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                }
+                h1 {
+                  font-size: 24px;
+                  color: #2c3e50;
+                  text-align: center;
+                  margin-bottom: 20px;
+                }
+                p {
+                  font-size: 16px;
+                  line-height: 1.5;
+                  margin: 10px 0;
+                }
+                .label {
+                  font-weight: bold;
+                  color: #2c3e50;
+                }
+                .footer {
+                  text-align: center;
+                  font-size: 12px;
+                  color: #aaa;
+                  margin-top: 30px;
+                }
+                </style>
+              </head>
+              <body>
+                <div class="container">
+                  <h1>Nuevo mensaje de contacto</h1>
+                  <p><span class="label">Nombre:</span> ${information.name}</p>
+                  <p><span class="label">Correo:</span> ${information.email}</p>
+                  <p><span class="label">Mensaje:</span></p>
+                  <p>${information.message}</p>
+                </div>
+                <div class="footer">
+                  <p>Este mensaje fue enviado desde el formulario de contacto de Estremor dev.</p>
+                </div>
+              </body>
+            </html>
+          `;
+  };
+
+  const sendEmailWithResend = async (information: any) => {
+    const key = import.meta.env.S_RESEND_KEY;
+    const emailSender = import.meta.env.S_RESEND_EMAIL_SENDER;
+    const emailReceiver = import.meta.env.S_RESEND_EMAIL_RECEIVER;
+    const subject = "Nuevo mensaje de contacto";
+    console.log({ emailSender });
+    const template = getTemplate(information);
+    const resend = new Resend(key);
+    const { data, error } = await resend.emails.send({
+      from: emailSender,
+      to: [emailReceiver],
+      subject: subject,
+      html: template,
+    });
+    console.log({ data, error });
+  };
+
+  const sendEmail = async () => {
+    const information = getInformation();
+    console.log(information);
+    await sendEmailWithResend(information);
+  };
+
+  $form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    sendEmail();
+  });
+</script>
