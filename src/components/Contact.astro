@@ -136,11 +136,11 @@
   };
 
   const sendEmailWithResend = async (information: any) => {
-    const key = import.meta.env.S_RESEND_KEY;
-    const emailSender = import.meta.env.S_RESEND_EMAIL_SENDER;
-    const emailReceiver = import.meta.env.S_RESEND_EMAIL_RECEIVER;
-    const subject = "Nuevo mensaje de contacto";
-    console.log({ emailSender });
+    const key = import.meta.env.PUBLIC_RESEND_KEY;
+    const emailSender = import.meta.env.PUBLIC_RESEND_EMAIL_SENDER;
+    const emailReceiver = import.meta.env.PUBLIC_RESEND_EMAIL_RECEIVER;
+    const subject = "Mensaje desde formulario de contacto del portafolio"; 
+    console.log({ key, emailSender, emailReceiver });
     const template = getTemplate(information);
     const resend = new Resend(key);
     const { data, error } = await resend.emails.send({
