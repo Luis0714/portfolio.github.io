@@ -2,7 +2,6 @@
 import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { Analytics } from '@vercel/analytics/react';
 interface Props {
   title: string;
   description: string;
@@ -29,8 +28,12 @@ const { description, title } = Astro.props;
     <Header />
     <slot />
     <Footer />
-    <Analytics/> 
   </body>
+  <script>
+    import { inject } from "@vercel/analytics";
+    inject()
+</script>
+  </script>
 </html>
 <style is:global>
   :root {
